@@ -13,12 +13,12 @@ class App extends Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      console.log(user);
       this.setState({ currentUser: user });
       console.log("User signedin");
       console.log(user);
     });
   }
-
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path="/" component={HomePage}></Route>
           <Route path="/shop" component={ShopPage}></Route>
